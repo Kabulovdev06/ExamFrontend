@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Mashinalar Ro‘yxati</h2>
+        <form id="carForm" class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="carName" class="form-label">Mashina Nomi</label>
+                <input type="text" class="form-control" id="carName" placeholder="Masalan: Camry" required>
+            </div>
+            <div class="col-md-6">
+                <label for="carBrand" class="form-label">Brend</label>
+                <input type="text" class="form-control" id="carBrand" placeholder="Masalan: Toyota" required>
+            </div>
+            <div class="col-md-4">
+                <label for="year" class="form-label">Yil</label>
+                <input type="number" class="form-control" id="year" min="1900" max="2025" required>
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label">Narx (USD)</label>
+                <input type="number" class="form-control" id="price" min="0" required>
+            </div>
+            <div class="col-md-4">
+                <label for="color" class="form-label">Rang</label>
+                <input type="text" class="form-control" id="color" placeholder="Masalan: Black" required>
+            </div>
+            <div class="col-md-6">
+                <label for="horsePower" class="form-label">Dvigatel Kuchi (hp)</label>
+                <input type="number" class="form-control" id="horsePower" min="0" required>
+            </div>
+            <div class="col-md-6">
+                <label for="electroCar" class="form-label">Elektr Mashina</label>
+                <select class="form-select" id="electroCar" required>
+                    <option value="" disabled selected>Tanlang</option>
+                    <option value="Ha">Ha</option>
+                    <option value="Yo‘q">Yo‘q</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <div id="error-message" class="alert alert-danger d-none"></div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100">Qo'shish</button>
+            </div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mashina Nomi</th>
+                    <th>Brend</th>
+                    <th>Yil</th>
+                    <th>Narx</th>
+                    <th>Rang</th>
+                    <th>Dvigatel Kuchi</th>
+                    <th>Elektr Mashina</th>
+                    <th>Amallar</th>
+                </tr>
+            </thead>
+            <tbody id="carList"></tbody>
+        </table>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Mashina Tahrirlash</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" class="row g-3">
+                        <input type="hidden" id="editId">
+                        <div class="col-md-6">
+                            <label for="editCarName" class="form-label">Mashina Nomi</label>
+                            <input type="text" class="form-control" id="editCarName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editCarBrand" class="form-label">Brend</label>
+                            <input type="text" class="form-control" id="editCarBrand" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="editYear" class="form-label">Yil</label>
+                            <input type="number" class="form-control" id="editYear" min="1900" max="2025" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="editPrice" class="form-label">Narx (USD)</label>
+                            <input type="number" class="form-control" id="editPrice" min="0" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="editColor" class="form-label">Rang</label>
+                            <input type="text" class="form-control" id="editColor" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editHorsePower" class="form-label">Dvigatel Kuchi (hp)</label>
+                            <input type="number" class="form-control" id="editHorsePower" min="0" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="editElectroCar" class="form-label">Elektr Mashina</label>
+                            <select class="form-select" id="editElectroCar" required>
+                                <option value="" disabled selected>Tanlang</option>
+                                <option value="Ha">Ha</option>
+                                <option value="Yo‘q">Yo‘q</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <div id="editError" class="alert alert-danger d-none"></div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100">Saqlash</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
